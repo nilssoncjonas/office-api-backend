@@ -53,7 +53,6 @@ export const show = async (req: Request, res: Response) => {
  * Create a resource
  */
 export const store = async (req: Request, res: Response) => {
-  console.log(req.body)
   try {
     const newQuote = await prisma.quotes.create({
       data: {
@@ -61,7 +60,6 @@ export const store = async (req: Request, res: Response) => {
         name: req.body.name
       }
     })
-    console.log(newQuote)
     res.send({
       status: "success",
 			data: newQuote
@@ -79,6 +77,22 @@ export const store = async (req: Request, res: Response) => {
  * Create a resource
  */
 export const storeMany = async (req: Request, res: Response) => {
+  const data = req.body
+  try {
+    const newQuotes = await prisma.quotes.createMany({
+      data
+    })
+    res.send({
+      status: "success",
+			data: newQuotes
+    })
+
+  } catch (err) {
+    console.log('err', err)
+    res.status(500).send({ 
+			status: "error",
+			message: "Unable to communicate with database" })
+	}
 }
 
 /**

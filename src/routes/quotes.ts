@@ -19,7 +19,7 @@ router.post('/', [], store)
 /**
  * POST /resource
  */
-router.post('/', [], storeMany)
+router.post('/many', [], storeMany)
 
 /**
  * PATCH /resource/:resourceId
