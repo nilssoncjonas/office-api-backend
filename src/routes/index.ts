@@ -1,5 +1,5 @@
 import express from "express"
-import resource from './_router'
+import quotes from './quotes'
 
 // instantiate a new router
 const router = express.Router()
@@ -13,9 +13,8 @@ router.get('/', (req, res) => {
 	})
 })
 
-/**
- * [EXAMPLE] /resource
- */
-// router.use('/resource', resource)
+
+router.use('/quotes', quotes)
+
 
 export default router

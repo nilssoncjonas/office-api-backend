@@ -6,3 +6,9 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Quotes {
+  id      Int    @id @default(autoincrement()) @db.UnsignedInt
+  content String
+  name    String
+}
