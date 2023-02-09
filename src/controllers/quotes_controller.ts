@@ -10,6 +10,19 @@ import prisma from '../prisma'
  * Get all resources
  */
 export const index = async (req: Request, res: Response) => {
+  try {
+    const data = await prisma.quotes.findMany()
+    res.send({
+      status: "success",
+			data,
+    })
+
+  } catch (err) {
+    console.log('err', err)
+    res.status(500).send({ 
+			status: "error",
+			message: "Unable to communicate with database" })
+	}
 }
 
 /**

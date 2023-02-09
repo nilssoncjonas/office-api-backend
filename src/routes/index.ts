@@ -9,6 +9,7 @@ const router = express.Router()
  */
 router.get('/', (req, res) => {
 	res.send({
+		status: "success",
 		message: "that's what she said...",
 	})
 })
