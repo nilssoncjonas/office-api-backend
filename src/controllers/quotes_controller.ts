@@ -29,12 +29,50 @@ export const index = async (req: Request, res: Response) => {
  * Get a single resource
  */
 export const show = async (req: Request, res: Response) => {
+  const quoteId = Number(req.params.quoteId)
+  try {
+    const data = await prisma.quotes.findUniqueOrThrow({
+      where: {
+        id: quoteId
+      }
+    })
+    res.send({
+      status: "success",
+			data,
+    })
+
+  } catch (err) {
+    console.log('err', err)
+    res.status(500).send({ 
+			status: "error",
+			message: "Unable to communicate with database" })
+	}
 }
 
 /**
  * Create a resource
  */
 export const store = async (req: Request, res: Response) => {
+  console.log(req.body)
+  try {
+    const newQuote = await prisma.quotes.create({
+      data: {
+        content: req.body.content,
+        name: req.body.name
+      }
+    })
+    console.log(newQuote)
+    res.send({
+      status: "success",
+			data: newQuote
+    })
+
+  } catch (err) {
+    console.log('err', err)
+    res.status(500).send({ 
+			status: "error",
+			message: "Unable to communicate with database" })
+	}
 }
 
 /**

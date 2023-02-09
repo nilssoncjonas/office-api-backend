@@ -10,7 +10,7 @@ router.get('/', index)
 /**
  * GET /resource/:resourceId
  */
-router.get('/:resourceId', show)
+router.get('/:quoteId', show)
 
 /**
  * POST /resource
