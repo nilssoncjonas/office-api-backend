@@ -24,11 +24,11 @@ router.post('/many', [], storeMany)
 /**
  * PATCH /resource/:resourceId
  */
-router.patch('/:resourceId', [], update)
+router.patch('/:quoteId', [], update)
 
 /**
  * DELETE /resource/:resourceId
  */
-router.delete('/:resourceId', destroy)
+router.delete('/:quoteId', destroy)
 
 export default router

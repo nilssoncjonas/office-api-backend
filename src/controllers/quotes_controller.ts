@@ -60,7 +60,7 @@ export const store = async (req: Request, res: Response) => {
         name: req.body.name
       }
     })
-    res.send({
+    res.status(201).send({
       status: "success",
 			data: newQuote
     })
@@ -82,7 +82,7 @@ export const storeMany = async (req: Request, res: Response) => {
     const newQuotes = await prisma.quotes.createMany({
       data
     })
-    res.send({
+    res.status(201).send({
       status: "success",
 			data: newQuotes
     })
@@ -99,10 +99,43 @@ export const storeMany = async (req: Request, res: Response) => {
  * Update a resource
  */
 export const update = async (req: Request, res: Response) => {
+  const quoteId = Number(req.params.quoteId)
+  try {
+    const quote = await prisma.quotes.update({
+      where: {
+        id: quoteId
+      }, 
+      data: req.body
+    })
+    res.status(204).send({
+      status: "success",
+      data: quote
+    })
+  } catch (err) {
+    res.status(500).send({ 
+      status: "error", 
+      message: "Unable to communicate with database" })
+  }
 }
 
 /**
  * Delete a resource
  */
 export const destroy = async (req: Request, res: Response) => {
+  const quoteId = Number(req.params.quoteId)
+  try {
+    const quote = await prisma.quotes.delete({
+      where: {
+        id: quoteId
+      }
+    })
+    res.status(204).send({
+      status: "success",
+      data: quote
+    })
+  } catch (err) {
+    res.status(500).send({ 
+      status: "error", 
+      message: "Unable to communicate with database" })
+  }
 }
