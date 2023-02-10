@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    
-    "build": "tsc",
+    "build": "env-cmd --silent bash scripts/build.sh",
+    "build-app": "tsc",
     "migrate": "npx prisma migrate deploy",
-    "dev": "cross-env nodemon server.ts",
+    "dev": "cross-env DEBUG=prisma-boilerplate:* nodemon server.ts",
     "start": "node build/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
