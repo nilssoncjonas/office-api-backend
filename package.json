@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "env-cmd bash scripts/build.sh",
-    "build-app": "tsc",
+    
+    "build": "tsc",
     "migrate": "npx prisma migrate deploy",
     "dev": "cross-env nodemon server.ts",
     "start": "node build/server.js",
