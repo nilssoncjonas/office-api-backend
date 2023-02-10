@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "@types/debug": "^4.1.7",
     "@types/node": "^18.11.18",
     "env-cmd": "^10.1.0",
